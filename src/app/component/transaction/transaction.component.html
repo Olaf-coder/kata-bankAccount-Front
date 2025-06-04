@@ -1,4 +1,5 @@
-<app-add-transaction></app-add-transaction>
+<app-add-transaction (notify)="getAllTransactions()"></app-add-transaction>
+
 @if (errorMessageGet) {
     {{errorMessageGet}}
 }
@@ -6,5 +7,5 @@
 @for (transaction of transactions; track transaction.id) {
     <div>id: {{transaction.id}}, date: {{transaction.date}}, depot: {{transaction.depositAmount}}, retrait: {{transaction.withdrawAmount}}, balance: {{transaction.balance}}</div>
 } @empty {
-    <div>Vous n'avez pas d'operation bancaire a votre actif</div>
+    <div>Vous n'avez pas d'operation bancaire à votre actif</div>
 }
