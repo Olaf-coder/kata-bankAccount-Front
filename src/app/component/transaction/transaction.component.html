@@ -1,11 +1,33 @@
 <app-add-transaction (notify)="getAllTransactions()"></app-add-transaction>
 
-@if (errorMessageGet) {
-    {{errorMessageGet}}
-}
-<h1>Transactions</h1>
-@for (transaction of transactions; track transaction.id) {
-    <div>id: {{transaction.id}}, date: {{transaction.date}}, depot: {{transaction.depositAmount}}, retrait: {{transaction.withdrawAmount}}, balance: {{transaction.balance}}</div>
-} @empty {
-    <div>Vous n'avez pas d'operation bancaire à votre actif</div>
-}
+<div id="statement-printable">
+    <h1>Transactions</h1>
+    <button (click)="printPage()">Imprimer</button><br>
+    <br>
+    @if (errorMessageGet) {
+        {{errorMessageGet}}
+    }
+
+    @if (transactions) {
+        <table>
+            <caption>Historique des dépots/retraits</caption>
+                <tr>
+                    <th scope="col">DATE</th>
+                    <th scope="col">DÉPOT</th>
+                    <th scope="col">RETRAIT</th>
+                    <th scope="col">BALANCE</th>
+                </tr>
+
+                @for (transaction of transactions; track transaction.id) {
+                    <tr>
+                        <th scope="row">{{transaction.date}}</th>
+                        <td>{{transaction.depositAmount | hideZero| number:'1.2-2'}}</td>
+                        <td>{{transaction.withdrawAmount | hideZero| number:'1.2-2'}}</td>
+                        <td>{{transaction.balance | number:'1.2-2'}}</td>
+                    </tr>
+                }
+        </table>
+    } @else {
+        <div>Vous n'avez pas d'operation bancaire à votre actif</div>
+    }
+</div>

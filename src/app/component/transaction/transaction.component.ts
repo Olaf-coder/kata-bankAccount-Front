@@ -2,12 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../../model/transaction.model";
 import {TransactionApi} from "../../service/transaction.api";
 import {AddTransactionComponent} from "./add/add-transaction.component";
+import {DecimalPipe} from "@angular/common";
+import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
 
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   imports: [
-    AddTransactionComponent
+    AddTransactionComponent,
+    DecimalPipe,
+    PipeHideZero
   ],
   styleUrl: './transaction.component.scss'
 })
@@ -34,6 +38,10 @@ export class TransactionComponent implements OnInit{
         this.errorMessageGet = errorToPrint;
       }
     })
+  }
+
+  printPage() {
+    window.print();
   }
 
 }

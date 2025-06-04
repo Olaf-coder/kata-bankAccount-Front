@@ -1,10 +1,19 @@
 <p>add-transaction works!</p>
 <hr>
-<h2>Depot</h2>
+<h2>Retrait</h2>
 @if (errorMessageWithdraw) {
     <div>{{errorMessageWithdraw}}</div>
 }
 <div class="groupe">
-    <input type="text" [(ngModel)]="amountWithdraw" id="amountWithdraw" [value]="amountWithdraw" placeholder="Montant a retirer"/>
-    <button (click)="sendWithdraw()">Creer</button>
+    <input type="text" [(ngModel)]="withdrawAmount" id="withdrawAmount" [value]="withdrawAmount" placeholder="Montant à retirer"/>
+    <button (click)="sendWithdraw()">Retirer</button>
+</div>
+
+<h2>Dépot</h2>
+@if (errorMessageDeposit) {
+    <div>{{errorMessageDeposit}}</div>
+}
+<div class="groupe">
+    <input type="text" [(ngModel)]="depositAmount" id="depositAmount" [value]="depositAmount" placeholder="Montant à deposer"/>
+    <button (click)="sendDeposit()">Déposer</button>
 </div>

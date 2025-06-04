@@ -16,18 +16,32 @@ export class AddTransactionComponent {
   readonly notify = output<void>();
 
   errorMessageWithdraw?: string;
-  amountWithdraw?: number ;
-  amountDeposit?: number ;
+  errorMessageDeposit?: string;
+  withdrawAmount?: number ;
+  depositAmount?: number ;
 
   constructor(private transactionApiService: TransactionApi) {
   }
 
   sendWithdraw() {
-    console.log(`amountWithdraw to send: ${this.amountWithdraw}`)
-    if(this.amountWithdraw && this.amountWithdraw > 0) {
+    console.log(`withdrawAmount to send: ${this.withdrawAmount}`)
+    if(this.withdrawAmount && this.withdrawAmount > 0) {
       const transaction: Transaction = {
         depositAmount: 0,
-        withdrawAmount: this.amountWithdraw
+        withdrawAmount: this.withdrawAmount
+      }
+      this.createTransaction(transaction);
+    } else {
+      this.errorMessageWithdraw = "Erreur, Montant inexistant ou non positif"
+    }
+  }
+
+  sendDeposit() {
+    console.log(`depositAmount to send: ${this.depositAmount}`)
+    if(this.depositAmount && this.depositAmount > 0) {
+      const transaction: Transaction = {
+        depositAmount: this.depositAmount,
+        withdrawAmount: 0
       }
       this.createTransaction(transaction);
     } else {
@@ -53,7 +67,7 @@ export class AddTransactionComponent {
   }
 
   cleanFormAdd() {
-    this.amountWithdraw = undefined;
-    this.amountDeposit = undefined;
+    this.withdrawAmount = undefined;
+    this.depositAmount = undefined;
   }
 }
