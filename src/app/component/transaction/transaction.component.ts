@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../../model/transaction.model";
 import {TransactionApi} from "../../service/transaction.api";
 import {AddTransactionComponent} from "./add/add-transaction.component";
-import {DecimalPipe} from "@angular/common";
+import {DatePipe, DecimalPipe} from "@angular/common";
 import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
 
 @Component({
@@ -11,7 +11,8 @@ import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
   imports: [
     AddTransactionComponent,
     DecimalPipe,
-    PipeHideZero
+    PipeHideZero,
+    DatePipe
   ],
   styleUrl: './transaction.component.scss'
 })

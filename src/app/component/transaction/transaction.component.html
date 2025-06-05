@@ -2,13 +2,10 @@
 
 <div id="statement-printable">
     <h1>Transactions</h1>
-    <button (click)="printPage()">Imprimer</button><br>
+    <button class="hide" (click)="printPage()">Imprimer</button><br>
     <br>
-    @if (errorMessageGet) {
-        {{errorMessageGet}}
-    }
 
-    @if (transactions) {
+    @if (transactions.length > 0) {
         <table>
             <caption>Historique des dépots/retraits</caption>
                 <tr>
@@ -20,7 +17,7 @@
 
                 @for (transaction of transactions; track transaction.id) {
                     <tr>
-                        <th scope="row">{{transaction.date}}</th>
+                        <th scope="row">{{transaction.date | date:'dd/MM/yyyy'}}</th>
                         <td>{{transaction.depositAmount | hideZero| number:'1.2-2'}}</td>
                         <td>{{transaction.withdrawAmount | hideZero| number:'1.2-2'}}</td>
                         <td>{{transaction.balance | number:'1.2-2'}}</td>

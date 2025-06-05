@@ -6,7 +6,7 @@
   }
 
   #statement-printable,
-  #statement-printable * {
+  #statement-printable *:not(.hide) {
     visibility: visible;
   }
 
