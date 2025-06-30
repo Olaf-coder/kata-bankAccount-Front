@@ -1,0 +1,15 @@
+@if (balance) {
+    <table>
+        <caption>Historique des dépots/retraits</caption>
+        <tr>
+            <th scope="col">DATE</th>
+            <th scope="col">BALANCE</th>
+        </tr>
+        <tr>
+            <th scope="row">{{balance.date | date:'dd/MM/yyyy'}}</th>
+            <td>{{balance.balance | number:'1.2-2'}}</td>
+        </tr>
+    </table>
+} @else {
+    <div>Nous n'avons pas pu recuperer votre balance</div>
+}

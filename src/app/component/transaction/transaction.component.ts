@@ -4,6 +4,7 @@ import {TransactionApi} from "../../service/transaction.api";
 import {AddTransactionComponent} from "./add/add-transaction.component";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
+import {BalanceComponent} from "../balance/balance.component";
 
 @Component({
   selector: 'app-transaction',
@@ -12,11 +13,12 @@ import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
     AddTransactionComponent,
     DecimalPipe,
     PipeHideZero,
-    DatePipe
+    DatePipe,
+    BalanceComponent
   ],
   styleUrl: './transaction.component.scss'
 })
-export class TransactionComponent implements OnInit{
+export class TransactionComponent implements OnInit {
 
   errorMessageGet? : string;
   transactions: Transaction[] = [];
