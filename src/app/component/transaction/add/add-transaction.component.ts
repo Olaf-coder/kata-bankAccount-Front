@@ -1,7 +1,8 @@
 import {Component, output} from '@angular/core';
-import {TransactionApi} from "../../../service/transaction.api";
+import {TransactionApi} from "../../../api/transaction.api";
 import {Transaction} from "../../../model/transaction.model";
 import {FormsModule} from "@angular/forms";
+import {TransactionService} from "../../../service/transaction.service";
 
 @Component({
   selector: 'app-add-transaction',
@@ -20,7 +21,8 @@ export class AddTransactionComponent {
   withdrawAmount?: number ;
   depositAmount?: number ;
 
-  constructor(private transactionApiService: TransactionApi) {
+  constructor(private transactionApiService: TransactionApi
+              , private transactionService: TransactionService) {
   }
 
   sendWithdraw() {
@@ -57,6 +59,7 @@ export class AddTransactionComponent {
 
         this.errorMessageWithdraw = undefined;
         this.cleanFormAdd();
+        this.transactionService.notifyTransactionUpdate();
       },
       error:(error) => {
         const errorToPrint = `Désolé, une erreur a été remonté durant l'envoie de la transaction': ${error.status}, ${error.statusText} `

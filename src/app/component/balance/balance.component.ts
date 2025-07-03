@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Balance} from "../../model/balance.model";
-import {BalanceApi} from "../../service/balance.api";
+import {BalanceApi} from "../../api/balance.api";
 import {DatePipe, DecimalPipe} from "@angular/common";
 import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
+import {TransactionService} from "../../service/transaction.service";
 
 @Component({
   selector: 'app-balance',
@@ -18,11 +19,15 @@ export class BalanceComponent implements OnInit {
   errorMessageGet? : string;
   balance: Balance;
 
-  constructor(private readonly balanceApi: BalanceApi) {
+  constructor(private readonly balanceApi: BalanceApi,
+              private transactionService: TransactionService) {
   }
 
   ngOnInit(): void {
     this.getAllTransactions();
+    this.transactionService.transactionUpdated$.subscribe(() => {
+      this.getAllTransactions();
+    })
   }
 
   getAllTransactions() {
