@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Balance} from "../../model/balance.model";
-import {BalanceApi} from "../../api/balance.api";
+import {Balance} from "../../../model/balance.model";
+import {BalanceApi} from "../../../api/balance.api";
 import {DatePipe, DecimalPipe} from "@angular/common";
-import {PipeHideZero} from "../../shared/PipesCustom/pipe-hide-zero";
-import {TransactionService} from "../../service/transaction.service";
+import {PipeHideZero} from "../../../shared/PipesCustom/pipe-hide-zero";
+import {TransactionService} from "../../../service/transaction.service";
 
 @Component({
   selector: 'app-balance',
@@ -25,6 +25,7 @@ export class BalanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllTransactions();
+    //j'ajoute un écouteur qui tourne en tache de fond
     this.transactionService.transactionUpdated$.subscribe(() => {
       this.getAllTransactions();
     })
